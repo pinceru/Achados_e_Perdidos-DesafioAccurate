@@ -15,6 +15,10 @@ public class Usuario {
 	private String nome;
 	private String telefone;
 	
+	public Usuario() {
+		
+	}
+	
 	public Usuario(String nome, String telefone) {
 		this.nome = nome;
 		this.telefone = telefone;

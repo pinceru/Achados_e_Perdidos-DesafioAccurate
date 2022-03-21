@@ -24,6 +24,10 @@ public class Item {
 	@OneToMany(mappedBy = "item")
 	private List<ItemStatus> itemStatus;
 	
+	public Item() {
+		
+	}
+	
 	public Item(String descricao, Usuario usuario) {
 		this.descricao = descricao;
 		this.autor = usuario;

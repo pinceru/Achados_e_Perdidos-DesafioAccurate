@@ -18,6 +18,10 @@ public class ItemStatus {
 	@ManyToOne
 	private Item item;
 	
+	public ItemStatus() {
+		
+	}
+	
 	public ItemStatus(Item item, Status status) {
 		this.item = item;
 		this.status = status;

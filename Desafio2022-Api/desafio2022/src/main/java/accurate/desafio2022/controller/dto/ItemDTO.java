@@ -1,5 +1,7 @@
 package accurate.desafio2022.controller.dto;
 
+import org.springframework.data.domain.Page;
+
 import accurate.desafio2022.model.Item;
 import lombok.Data;
 
@@ -17,5 +19,9 @@ public class ItemDTO {
 		this.telefone = item.getAutor().getTelefone();
 		this.descricao = item.getDescricao();
 		
+	}
+
+	public static Page<ItemDTO> converter(Page<Item> itens) {
+		return itens.map(ItemDTO::new);
 	}
 }

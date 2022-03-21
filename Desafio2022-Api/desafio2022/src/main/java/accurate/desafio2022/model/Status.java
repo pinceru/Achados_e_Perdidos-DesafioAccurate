@@ -18,4 +18,8 @@ public class Status {
 	private String status;
 	@OneToMany(mappedBy = "status")
 	private List<ItemStatus> itemStatus;
+	
+	public Status() {
+		
+	}
 }
