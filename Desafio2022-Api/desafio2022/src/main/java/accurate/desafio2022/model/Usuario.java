@@ -14,4 +14,9 @@ public class Usuario {
 	private Long id;
 	private String nome;
 	private String telefone;
+	
+	public Usuario(String nome, String telefone) {
+		this.nome = nome;
+		this.telefone = telefone;
+	}
 }

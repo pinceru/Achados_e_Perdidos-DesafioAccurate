@@ -1,6 +1,6 @@
 package accurate.desafio2022.model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -18,9 +18,14 @@ public class Item {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private LocalDateTime data = LocalDateTime.now();
+	private LocalDate data;
 	@ManyToOne
 	private Usuario autor;
 	@OneToMany(mappedBy = "item")
 	private List<ItemStatus> itemStatus;
+	
+	public Item(String descricao, Usuario usuario) {
+		this.descricao = descricao;
+		this.autor = usuario;
+	}
 }
