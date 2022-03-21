@@ -3,7 +3,9 @@ package accurate.desafio2022.controller.dto;
 import java.util.Optional;
 
 import accurate.desafio2022.model.Item;
+import accurate.desafio2022.model.Status;
 import accurate.desafio2022.model.Usuario;
+import accurate.desafio2022.repository.StatusRepository;
 import accurate.desafio2022.repository.UsuarioRepository;
 import lombok.Data;
 
@@ -14,13 +16,14 @@ public class InserirItemDTO {
 	private String descricao;
 	private String status;
 	
-	public Item converter(UsuarioRepository usuarioRepository) {
+	public Item converter(UsuarioRepository usuarioRepository, StatusRepository statusRepository) {
+		Status statusObj = statusRepository.findByStatus(status);
 		Optional<Usuario> usuario = usuarioRepository.findByNome(nome);
 		if(usuario.isPresent()) {
-			return new Item(descricao, usuario.get());
+			return new Item(descricao, usuario.get(), statusObj);
 		} else {
 			Usuario novoUsuario = usuarioRepository.save(new Usuario(nome, telefone));
-			return new Item(descricao, novoUsuario);
+			return new Item(descricao, novoUsuario, statusObj);
 		}
 	}
 }

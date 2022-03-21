@@ -12,12 +12,14 @@ public class ItemDTO {
 	private String nome;
 	private String telefone;
 	private String descricao;
+	private String status;
 	
 	public ItemDTO(Item item) {
 		this.id = item.getId();
 		this.nome = item.getAutor().getNome();
 		this.telefone = item.getAutor().getTelefone();
 		this.descricao = item.getDescricao();
+		this.status = item.getStatus().getStatus();
 		
 	}
 

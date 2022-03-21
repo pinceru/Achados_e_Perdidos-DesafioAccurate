@@ -10,4 +10,6 @@ import accurate.desafio2022.model.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	Optional<Usuario> findByNome(String nome);
+
+	Optional<Usuario> findByNomeAndTelefone(String nome, String telefone);
 }

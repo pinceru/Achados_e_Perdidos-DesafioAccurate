@@ -14,19 +14,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import accurate.desafio2022.controller.dto.AtualizarItemDTO;
 import accurate.desafio2022.controller.dto.InserirItemDTO;
 import accurate.desafio2022.controller.dto.ItemDTO;
 import accurate.desafio2022.model.Item;
-import accurate.desafio2022.model.ItemStatus;
-import accurate.desafio2022.model.Status;
 import accurate.desafio2022.repository.ItemRepository;
-import accurate.desafio2022.repository.ItemStatusRepository;
-import accurate.desafio2022.repository.StatusRepsoitory;
+import accurate.desafio2022.repository.StatusRepository;
 import accurate.desafio2022.repository.UsuarioRepository;
 
 @RestController
@@ -40,27 +39,24 @@ public class ItemController {
 	private ItemRepository itemRepository;
 	
 	@Autowired
-	private StatusRepsoitory statusRepository;
+	private StatusRepository statusRepository;
 	
-	@Autowired
-	private ItemStatusRepository itemStatusRepository;
+	
 	
 	@PostMapping("/cadastrar")
 	@Transactional
 	public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody InserirItemDTO insercaoDTO, 
 														UriComponentsBuilder uriBuilder) {
 		
-		Item item = insercaoDTO.converter(usuarioRepository);
-		Item itemSalvo = itemRepository.save(item);
-		Status status = statusRepository.findByStatus(insercaoDTO.getStatus());
-		itemStatusRepository.save(new ItemStatus(itemSalvo, status));
+		Item item = insercaoDTO.converter(usuarioRepository, statusRepository);
+		itemRepository.save(item);
 		
 		URI uri = uriBuilder.path("/item/{id}")
 				.buildAndExpand(item.getId()).toUri();
 		return ResponseEntity.created(uri).body(new ItemDTO(item));
 	}
 	
-	@GetMapping
+	@GetMapping("/listar")
 	@Transactional
 	public Page<ItemDTO> listarTodos(@PageableDefault(sort = "data", 
 										direction = Direction.ASC, page = 0, size = 10) 
@@ -70,7 +66,7 @@ public class ItemController {
 		return ItemDTO.converter(itens);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/buscar/{id}")
 	@Transactional
 	public ResponseEntity<ItemDTO> buscarItem(@PathVariable Long id) {
 		Optional<Item> item = itemRepository.findById(id);
@@ -79,5 +75,20 @@ public class ItemController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	@PutMapping("/atualizar/{id}")
+	@Transactional
+	public ResponseEntity<ItemDTO> atualizarItem(@PathVariable Long id, 
+													@RequestBody AtualizarItemDTO atualizarDTO) {
+		
+		Optional<Item> item = itemRepository.findById(id);
+		if(item.isPresent()) {
+			Item itemAtualizado = atualizarDTO.atualizarItem(id, itemRepository);
+			return ResponseEntity.ok(new ItemDTO(itemAtualizado));
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+		
 	}
 }
