@@ -1,6 +1,7 @@
 package accurate.desafio2022.controller;
 
 import java.net.URI;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,11 +61,23 @@ public class ItemController {
 	}
 	
 	@GetMapping
+	@Transactional
 	public Page<ItemDTO> listarTodos(@PageableDefault(sort = "data", 
 										direction = Direction.ASC, page = 0, size = 10) 
 										Pageable paginacao) {
 		
 		Page<Item> itens = itemRepository.findAll(paginacao);
 		return ItemDTO.converter(itens);
+	}
+	
+	@GetMapping("/{id}")
+	@Transactional
+	public ResponseEntity<ItemDTO> buscarItem(@PathVariable Long id) {
+		Optional<Item> item = itemRepository.findById(id);
+		if(item.isPresent()) {
+			return ResponseEntity.ok(new ItemDTO(item.get()));
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
