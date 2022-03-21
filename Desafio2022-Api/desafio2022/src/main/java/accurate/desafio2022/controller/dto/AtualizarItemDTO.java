@@ -16,7 +16,7 @@ public class AtualizarItemDTO {
 		item.getAutor().setNome(this.nome);
 		item.getAutor().setTelefone(this.telefone);
 		item.setDescricao(this.descricao);
-		item.getStatus().setStatus(this.status);
+		item.getStatus().setNome(this.status);
 		return item;
 	}
 

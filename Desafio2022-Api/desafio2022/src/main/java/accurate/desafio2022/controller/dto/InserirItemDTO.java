@@ -17,7 +17,7 @@ public class InserirItemDTO {
 	private String status;
 	
 	public Item converter(UsuarioRepository usuarioRepository, StatusRepository statusRepository) {
-		Status statusObj = statusRepository.findByStatus(status);
+		Status statusObj = statusRepository.findByNome(status);
 		Optional<Usuario> usuario = usuarioRepository.findByNome(nome);
 		if(usuario.isPresent()) {
 			return new Item(descricao, usuario.get(), statusObj);
