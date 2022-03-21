@@ -19,7 +19,7 @@ public class ItemDTO {
 		this.nome = item.getAutor().getNome();
 		this.telefone = item.getAutor().getTelefone();
 		this.descricao = item.getDescricao();
-		this.status = item.getStatus().getStatus();
+//		this.status = item.getStatus().getStatus();
 		
 	}
 
