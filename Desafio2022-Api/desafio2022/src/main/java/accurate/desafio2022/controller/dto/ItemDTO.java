@@ -13,6 +13,7 @@ public class ItemDTO {
 	private String telefone;
 	private String descricao;
 	private String status;
+	private String data;
 	
 	public ItemDTO(Item item) {
 		this.id = item.getId();
@@ -20,7 +21,7 @@ public class ItemDTO {
 		this.telefone = item.getAutor().getTelefone();
 		this.descricao = item.getDescricao();
 		this.status = item.getStatus().getNome();
-		
+		this.data = item.getData().toString();
 	}
 
 	public static Page<ItemDTO> converter(Page<Item> itens) {
