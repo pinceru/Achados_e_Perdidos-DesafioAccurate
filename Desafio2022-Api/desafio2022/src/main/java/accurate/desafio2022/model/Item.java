@@ -21,15 +21,18 @@ public class Item {
 	private Usuario autor;
 	@ManyToOne
 	private Status status;
+	@ManyToOne
+	private Localizacao localizacao;
 	
 	public Item() {
 		
 	}
 	
-	public Item(String descricao, Usuario usuario, Status status, String data) {
+	public Item(String descricao, Usuario usuario, Status status, LocalDateTime data, Localizacao localizacao) {
 		this.descricao = descricao;
 		this.autor = usuario;
 		this.status = status;
-		this.data = LocalDateTime.parse(data);
+		this.data = data;
+		this.localizacao = localizacao;
 	}
 }

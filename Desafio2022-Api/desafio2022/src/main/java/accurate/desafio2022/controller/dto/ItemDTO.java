@@ -1,5 +1,7 @@
 package accurate.desafio2022.controller.dto;
 
+import java.time.LocalDateTime;
+
 import org.springframework.data.domain.Page;
 
 import accurate.desafio2022.model.Item;
@@ -13,7 +15,9 @@ public class ItemDTO {
 	private String telefone;
 	private String descricao;
 	private String status;
-	private String data;
+	private LocalDateTime data;
+	private double latitude;
+	private double longitude;
 	
 	public ItemDTO(Item item) {
 		this.id = item.getId();
@@ -21,7 +25,9 @@ public class ItemDTO {
 		this.telefone = item.getAutor().getTelefone();
 		this.descricao = item.getDescricao();
 		this.status = item.getStatus().getNome();
-		this.data = item.getData().toString();
+		this.data = item.getData();
+		this.latitude = item.getLocalizacao().getLatitude();
+		this.longitude = item.getLocalizacao().getLongitude();
 	}
 
 	public static Page<ItemDTO> converter(Page<Item> itens) {

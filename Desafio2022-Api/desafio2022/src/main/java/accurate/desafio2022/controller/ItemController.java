@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +27,7 @@ import accurate.desafio2022.controller.dto.InserirItemDTO;
 import accurate.desafio2022.controller.dto.ItemDTO;
 import accurate.desafio2022.model.Item;
 import accurate.desafio2022.repository.ItemRepository;
+import accurate.desafio2022.repository.LocalizacaoRepository;
 import accurate.desafio2022.repository.StatusRepository;
 import accurate.desafio2022.repository.UsuarioRepository;
 
@@ -42,13 +44,16 @@ public class ItemController {
 	@Autowired
 	private StatusRepository statusRepository;
 	
+	@Autowired
+	private LocalizacaoRepository localizacaoRepository;
+	
 	
 	@PostMapping("/cadastrar")
 	@Transactional
-	public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody InserirItemDTO insercaoDTO, 
+	public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody @Valid InserirItemDTO insercaoDTO, 
 														UriComponentsBuilder uriBuilder) {
 		
-		Item item = insercaoDTO.converter(usuarioRepository, statusRepository);
+		Item item = insercaoDTO.converter(usuarioRepository, statusRepository, localizacaoRepository);
 		itemRepository.save(item);
 		
 		URI uri = uriBuilder.path("/item/{id}")
@@ -79,7 +84,7 @@ public class ItemController {
 	
 	@PutMapping("/atualizar/{id}")
 	@Transactional
-	public ResponseEntity<ItemDTO> atualizarItem(@PathVariable Long id, 
+	public ResponseEntity<ItemDTO> atualizarItem(@PathVariable @Valid Long id, 
 													@RequestBody AtualizarItemDTO atualizarDTO) {
 		
 		Optional<Item> item = itemRepository.findById(id);
