@@ -1,5 +1,6 @@
 package accurate.desafio2022.controller.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
@@ -16,8 +17,8 @@ public class ItemDTO {
 	private String descricao;
 	private String status;
 	private LocalDateTime data;
-	private double latitude;
-	private double longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	
 	public ItemDTO(Item item) {
 		this.id = item.getId();

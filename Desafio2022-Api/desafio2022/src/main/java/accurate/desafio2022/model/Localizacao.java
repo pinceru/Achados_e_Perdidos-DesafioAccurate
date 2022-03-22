@@ -1,5 +1,7 @@
 package accurate.desafio2022.model;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,14 +14,14 @@ import lombok.Data;
 public class Localizacao {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private double latitude;
-	private double longitude;
+	private BigDecimal latitude;
+	private BigDecimal longitude;
 	
 	public Localizacao() {
 		
 	}
 	
-	public Localizacao(double latitude, double longitude) {
+	public Localizacao(BigDecimal latitude, BigDecimal longitude) {
 		this.latitude = latitude;	
 		this.longitude = longitude;
 	}

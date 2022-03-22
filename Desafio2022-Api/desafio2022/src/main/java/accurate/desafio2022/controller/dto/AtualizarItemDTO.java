@@ -1,7 +1,10 @@
 package accurate.desafio2022.controller.dto;
 
+import java.math.BigDecimal;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import accurate.desafio2022.config.FormatarData;
 import accurate.desafio2022.model.Item;
@@ -10,8 +13,9 @@ import lombok.Data;
 
 @Data
 public class AtualizarItemDTO {
-	@NotNull @NotEmpty
+	@NotNull @NotEmpty @Size(max = 50, min = 1)
 	private String nome;
+	@Size(max = 15, min = 14)
 	private String telefone;
 	@NotNull @NotEmpty
 	private String descricao;
@@ -19,9 +23,9 @@ public class AtualizarItemDTO {
 	@NotNull @NotEmpty
 	private String data;
 	@NotNull 
-	private double latitude;
+	private BigDecimal latitude;
 	@NotNull
-	private double longitude;
+	private BigDecimal longitude;
 	
 	public Item atualizarItem(Long id, ItemRepository itemRepository) {
 		Item item = itemRepository.getOne(id);
