@@ -23,9 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import accurate.desafio2022.controller.dto.AtualizarItemDTO;
+import accurate.desafio2022.controller.dto.HistoricoDTO;
 import accurate.desafio2022.controller.dto.InserirItemDTO;
 import accurate.desafio2022.controller.dto.ItemDTO;
+import accurate.desafio2022.model.Historico;
 import accurate.desafio2022.model.Item;
+import accurate.desafio2022.repository.HistoricoRepository;
 import accurate.desafio2022.repository.ItemRepository;
 import accurate.desafio2022.repository.LocalizacaoRepository;
 import accurate.desafio2022.repository.StatusRepository;
@@ -47,6 +50,8 @@ public class ItemController {
 	@Autowired
 	private LocalizacaoRepository localizacaoRepository;
 	
+	@Autowired
+	private HistoricoRepository historicoRepository;
 	
 	@PostMapping("/cadastrar")
 	@Transactional
@@ -54,7 +59,9 @@ public class ItemController {
 														UriComponentsBuilder uriBuilder) {
 		
 		Item item = insercaoDTO.converter(usuarioRepository, statusRepository, localizacaoRepository);
-		itemRepository.save(item);
+		Item itemSalvo = itemRepository.save(item);
+		historicoRepository.save(new Historico(itemSalvo, itemSalvo.getStatus().getNome(), 
+				itemSalvo.getDescricao(), itemSalvo.getData()));
 		
 		URI uri = uriBuilder.path("/item/{id}")
 				.buildAndExpand(item.getId()).toUri();
@@ -90,6 +97,8 @@ public class ItemController {
 		Optional<Item> item = itemRepository.findById(id);
 		if(item.isPresent()) {
 			Item itemAtualizado = atualizarDTO.atualizarItem(id, itemRepository);
+			historicoRepository.save(new Historico(itemAtualizado, itemAtualizado.getStatus().getNome(), 
+					itemAtualizado.getDescricao(), itemAtualizado.getData()));
 			return ResponseEntity.ok(new ItemDTO(itemAtualizado));
 		} else {
 			return ResponseEntity.notFound().build();
@@ -106,5 +115,16 @@ public class ItemController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	@GetMapping("/historico/listar/{id}")
+	@Transactional
+	public Page<HistoricoDTO> listarHistorico(@PathVariable Long id, @PageableDefault(sort = "data", 
+												direction = Direction.ASC, page = 0, size = 5) 
+														Pageable paginacao) {
+		
+		Optional<Item> item = itemRepository.findById(id);
+		Page<Historico> historico = historicoRepository.findByItem(item.get(), paginacao);
+		return HistoricoDTO.converter(historico);
 	}
 }
