@@ -31,16 +31,16 @@ public class InserirItemDTO {
 	private String status;
 	@NotNull @NotEmpty
 	private String data;
-	@NotNull @Max(190)  @Min(-190) 
+	@NotNull @Max(90)  @Min(-90) 
 	private BigDecimal latitude;
-	@NotNull @Max(190)  @Min(-190) 
+	@NotNull @Max(180)  @Min(-180)
 	private BigDecimal longitude;
 	
 	public Item converter(UsuarioRepository usuarioRepository, StatusRepository statusRepository, 
 			LocalizacaoRepository localizacaoRepository) {
 		Status statusObj = statusRepository.findByNome(status);
 		Localizacao localizacao = localizacaoRepository.save(new Localizacao(latitude, longitude));
-		Optional<Usuario> usuario = usuarioRepository.findByNome(nome);
+		Optional<Usuario> usuario = usuarioRepository.findByNomeAndTelefone(nome, telefone);
 		LocalDateTime dataFormatada = FormatarData.formatarData(data);
 		if(usuario.isPresent()) {
 			return new Item(descricao, usuario.get(), statusObj, dataFormatada, localizacao);

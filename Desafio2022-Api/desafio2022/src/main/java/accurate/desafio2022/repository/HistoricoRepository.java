@@ -12,5 +12,5 @@ import accurate.desafio2022.model.Item;
 public interface HistoricoRepository extends JpaRepository<Historico, Long> {
 
 	Page<Historico> findByItem(Item item, Pageable paginacao);
-
+	Historico findByItem(Item item);
 }

@@ -109,8 +109,10 @@ public class ItemController {
 	@Transactional
 	public ResponseEntity<?> deletarItem(@PathVariable Long id) {
 		Optional<Item> item = itemRepository.findById(id);
+		Historico historico = historicoRepository.findByItem(item.get());
 		if(item.isPresent()) {
 			itemRepository.deleteById(id);
+			historicoRepository.delete(historico);
 			return ResponseEntity.ok().build();
 		} else {
 			return ResponseEntity.notFound().build();

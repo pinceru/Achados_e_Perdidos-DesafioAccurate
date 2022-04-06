@@ -2,6 +2,7 @@ package accurate.desafio2022.model;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class Item {
 	private Status status;
 	@ManyToOne
 	private Localizacao localizacao;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Historico historico;
 	
 	public Item() {
