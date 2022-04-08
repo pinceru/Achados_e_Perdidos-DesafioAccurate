@@ -1,3 +1,5 @@
 export * from './login/Login'
 export * from './cadastroUsuario/CadastroUsuario'
 export * from './dashboard/Dashboard'
+export * from './cadastroItem/CadastroItem'
+export * from './homeItens/HomeItens'

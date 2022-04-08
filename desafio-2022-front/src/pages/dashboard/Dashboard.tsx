@@ -8,7 +8,7 @@ export const Dashboard = () => {
                 <Link to="/login">Entrar</Link>
             </div>
             <div>
-                <Link to="">Cadastrar item</Link>
+                <Link to="/cadastro-item">Cadastrar item</Link>
             </div>
             <div>
                 <Link to="/cadastro-usuario">Cadastrar-se</Link>

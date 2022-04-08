@@ -1,0 +1,47 @@
+.divContainer {
+    margin-top: 50px;
+    min-height: 80px;
+    height: auto;
+    overflow: hidden;
+    width: 1200px;
+    box-sizing: border-box;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-top: 3px solid black;
+}
+
+.linha{
+    height: 25px;
+    width: inherit;
+    display: flex;
+    text-align: center;
+}
+
+
+.coluna {
+    height: inherit;
+    width: 200px;
+    display: flex;
+    text-align: center;
+}
+
+.opcoes{
+    height: inherit;
+    width: 20%;
+    box-sizing: border-box;
+}
+
+.nome{
+    height: inherit;
+    width: 60%;
+    box-sizing: border-box;
+    border-right: 3px solid white;
+    border-left: 3px solid white;
+}
+
+.numero{
+    height: inherit;
+    width: 25%;
+    box-sizing: border-box;
+    border-right: 3px solid white;
+}

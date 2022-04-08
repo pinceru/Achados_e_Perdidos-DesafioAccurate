@@ -1,12 +1,13 @@
 import { useState } from "react"
 import { api } from "../../shared/services/api"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 export const Login = () => {
     const [login, setLogin] = useState("")
     const [senha, setSenha] = useState("")
-
+    const history = useNavigate()
     const handleEntrar = () => {
+        
         api.post("/auth", {
             login:login,
             senha:senha
@@ -15,6 +16,7 @@ export const Login = () => {
         .catch(err => {
             console.error(err)
         })
+        history('/lista-item')
     }
 
     return(
