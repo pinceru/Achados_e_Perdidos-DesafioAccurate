@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { api } from "../../shared/services/api"
 import { Link, useNavigate } from "react-router-dom"
+import { setItem } from "../../shared/services/cookie"
 
 export const Login = () => {
     const [login, setLogin] = useState("")
@@ -12,7 +13,7 @@ export const Login = () => {
             login:login,
             senha:senha
         })
-        .then((response) => console.log(response.data))
+        .then((response) => {setItem('token', response.data.token)})
         .catch(err => {
             console.error(err)
         })
@@ -21,6 +22,7 @@ export const Login = () => {
 
     return(
         <div>
+            <h1>Login</h1>
             <form>
                 <div>
                     <label>Login</label>
