@@ -12,10 +12,6 @@ interface IItem {
 }
 
 export const HomeItens = () => {
-    //const [searchParams, setSearchParams] = useState('')
-    //const pagina = useMemo(() => {
-    //    return searchParams.get('pagina') || ''
-    //}, [searchParams])
     const[item, setItem] = useState<IItem[]>([])
 
     const token = getItem('token')

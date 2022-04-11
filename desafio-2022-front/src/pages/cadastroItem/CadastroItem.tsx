@@ -1,14 +1,15 @@
 import { useState } from "react"
 import { api } from "../../shared/services/api"
 import { Link } from "react-router-dom"
+import { Maps } from "../../shared/components"
 
 export const CadastroItem = () => {
     const [nome, setNome] = useState('')
     const [telefone, setTelefone] = useState('')
     const [descricao, setDescricao] = useState('')
     const [data, setData] = useState('')
-    const [latitude, setLatitude] = useState('')
-    const [longitude, setLongitude] = useState('')
+    const [latitude, setLatitude] = useState(0)
+    const [longitude, setLongitude] = useState(0)
 
     const handleEntrar = () => {
         api.post("/item/cadastrar", {
@@ -45,14 +46,10 @@ export const CadastroItem = () => {
                     <label>Data</label>
                     <input type="text" value={data} onChange={e => setData(e.target.value)}/>
                 </div>
-                <div>
-                    <label>Latitude</label>
-                    <input type="text" value={latitude} onChange={e => setLatitude(e.target.value)}/>
-                </div>
-                <div>
-                    <label>Longitude</label>
-                    <input type="text" value={longitude} onChange={e => setLongitude(e.target.value)}/>
-                </div>
+                <Maps width='300px' height='300px' 
+                onSetLocation={(coordenadas) => {setLatitude(coordenadas.lat()); setLongitude(coordenadas.lng())}}>
+
+                </Maps>
                 <div>
                     <button type="button" onClick={handleEntrar}>
                         Cadastrar
