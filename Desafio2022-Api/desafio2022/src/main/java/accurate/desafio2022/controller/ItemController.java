@@ -96,7 +96,7 @@ public class ItemController {
 		
 		Optional<Item> item = itemRepository.findById(id);
 		if(item.isPresent()) {
-			Item itemAtualizado = atualizarDTO.atualizarItem(id, itemRepository);
+			Item itemAtualizado = atualizarDTO.atualizarItem(id, itemRepository, statusRepository);
 			historicoRepository.save(new Historico(itemAtualizado, itemAtualizado.getStatus().getNome(), 
 					itemAtualizado.getDescricao(), itemAtualizado.getData()));
 			return ResponseEntity.ok(new ItemDTO(itemAtualizado));

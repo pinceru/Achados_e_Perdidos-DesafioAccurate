@@ -1,10 +1,10 @@
 package accurate.desafio2022.controller.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 import org.springframework.data.domain.Page;
 
+import accurate.desafio2022.config.FormatarData;
 import accurate.desafio2022.model.Item;
 import lombok.Data;
 
@@ -16,7 +16,7 @@ public class ItemDTO {
 	private String telefone;
 	private String descricao;
 	private String status;
-	private LocalDateTime data;
+	private String data;
 	private BigDecimal latitude;
 	private BigDecimal longitude;
 	
@@ -26,7 +26,7 @@ public class ItemDTO {
 		this.telefone = item.getAutor().getTelefone();
 		this.descricao = item.getDescricao();
 		this.status = item.getStatus().getNome();
-		this.data = item.getData();
+		this.data = FormatarData.converterData(item.getData());
 		this.latitude = item.getLocalizacao().getLatitude();
 		this.longitude = item.getLocalizacao().getLongitude();
 	}
