@@ -9,7 +9,6 @@ export const setItem = (chave:string, valor:any) => {
 
 export const getItem = (chave:string) => {
     const cookiesParsed = parseCookies(null)
-
         if (typeof cookiesParsed[chave] !== 'undefined') {
             return JSON.parse(cookiesParsed[chave])
         }

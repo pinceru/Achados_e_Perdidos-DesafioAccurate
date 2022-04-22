@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
 const center = {
-    lat: -23.593378,
-    lng: -46.68689,
+    lat: -23.525979688348997,
+    lng: -46.927537592193715,
 };
 
 interface IMapProps{ 

@@ -13,8 +13,6 @@ export interface IItem {
     id: number
 }
 
-
-
 export const TabelaItem: React.FC<ITabelaItemProps> = (props) => {
     const history = useNavigate()
     const pushIdAtualizar = (id: number) => {

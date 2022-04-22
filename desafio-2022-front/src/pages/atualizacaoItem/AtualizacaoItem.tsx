@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { Header } from "../../shared/components"
+import { DataPicker, Header } from "../../shared/components"
 import { api, registrarToken } from "../../shared/services/api"
 import { getItem } from "../../shared/services/cookie"
 import '../../shared/style/style.css'
@@ -86,8 +86,7 @@ export const AtualizacaoItem = () => {
                 </div>
                 <div className="divInput">
                     <label className="label">Data</label>
-                    <input className="input" type="text" value={data} onChange={e => setData(e.target.value)}
-                    placeholder='dd/mm/aaaa hh:mm' onFocus={(value) => console.log(value)}/>
+                    <DataPicker placeholder="dd/mm/aaaa hh:mm" className="input" onChange={e => setData(e.toLocaleString().slice(0, 16))}></DataPicker>
                 </div>
                 <div className="divInput">
                     <label className="label">Status</label>

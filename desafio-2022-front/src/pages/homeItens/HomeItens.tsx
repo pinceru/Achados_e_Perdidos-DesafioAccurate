@@ -1,5 +1,6 @@
 import './HomeItens.css'
 import { TabelaItem } from './components/TabelaItem'
+import { Paginacao } from './components/Paginacao'
 import { useEffect, useState } from 'react'
 import { api, registrarToken } from '../../shared/services/api'
 import { getItem } from '../../shared/services/cookie'
@@ -18,15 +19,21 @@ interface IItem {
     id: number
 }
 
+export interface IItemReponse {
+    content: IItem[],    
+    totalElements: number,     
+    size: number,
+}
+
 export const HomeItens = () => {
-    const[item, setItem] = useState<IItem[]>([])
+    const[item, setItem] = useState<IItemReponse>({content: [] as IItem[]} as IItemReponse)
 
     const token = getItem('token')
     registrarToken(token)
     useEffect(() => {
         api.get('/item/listar')
         .then((response) => {
-            setItem(response.data.content)
+            setItem(response.data)
         })
         .catch((err) => {
             console.error('Ocorreu o erro' + err)
@@ -41,14 +48,15 @@ export const HomeItens = () => {
             </div>
             <div>
                 <Header titulo='Home de itens'></Header>
-                <TabelaItem itens={item}></TabelaItem>
+                <TabelaItem itens={item.content}></TabelaItem>
+                <Paginacao totalItens={item.totalElements} setItem={setItem}></Paginacao>
             </div>
-            <div className="containerLink">
-                <Link className="a2" to="/pagina-inicial">    
+            <div className="containerLink2">
+                <Link className="a3" to="/pagina-inicial">    
                     Sair
                 </Link>
-            </div> 
-            <div className="divOnda">
+            </div>
+            <div className="divOnda2">
                 <img className="imgOnda" src={wave}/>
             </div>
         </div>

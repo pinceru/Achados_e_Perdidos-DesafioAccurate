@@ -15,7 +15,9 @@
 
 .background{
     background-color: #89E687;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+    overflow: hidden;
     width: 100vw;
     box-sizing: border-box;
     display: flex;
@@ -33,11 +35,26 @@
 .a2{
     color: white;
     font-size: 2em;
+    z-index: 1;
+}
+
+.a3{
+    color: white;
+    font-size: 2em;
+    margin-top: 10px;
+    z-index: 1;
 }
 
 .containerLink{
     width: 200px;
     height: 50px;
+}
+
+.containerLink2{
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+    z-index: 1;
 }
 
 .botao{
@@ -85,6 +102,15 @@
     height: 190px;
     width: inherit;
     box-sizing: border-box;
+}
+
+.divOnda2{
+    height: 190px;
+    width: inherit;
+    box-sizing: border-box;
+    position: absolute;
+    bottom: 0%;
+    z-index: 0;
 }
 
 .imgOnda{

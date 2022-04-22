@@ -41,12 +41,12 @@ export const HistoricoItem = () => {
                     Atualizar
                 </button>
             </div>
-            <div className="containerLink">
-                <Link className="a2" to="/lista-item">    
+            <div className="containerLink2">
+                <Link className="a3" to="/lista-item">    
                     Voltar
-                </Link>
+                </Link> 
             </div> 
-            <div className="divOnda">
+            <div className="divOnda2">
                 <img className="imgOnda" src={wave}/>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { api } from "../../shared/services/api"
 import { Link, useNavigate } from "react-router-dom"
-import { Maps } from "../../shared/components"
+import { DataPicker, Maps } from "../../shared/components"
 import { Header } from "../../shared/components/Header"
 import '../../shared/style/style.css'
 import wave from '../../../src/imgs/Vector.png'
@@ -11,24 +11,26 @@ export const CadastroItem = () => {
     const [nome, setNome] = useState('')
     const [telefone, setTelefone] = useState('')
     const [descricao, setDescricao] = useState('')
-    const [data, setData] = useState('')
+    const [data, setData] = useState(new Date().toLocaleString().slice(0, 16))
     const [latitude, setLatitude] = useState(0)
     const [longitude, setLongitude] = useState(0)
     const history = useNavigate()
 
     const handleEntrar = () => {
+        console.log(data)
         api.post("/item/cadastrar", {
             nome:nome,
             telefone:telefone,
             descricao:descricao,
-            data:data,
+            data:data.toString(),
             status:'ACHADO',
             latitude:latitude,
             longitude:longitude
         })
         .then((response) => {
             console.log(response.data)
-            history('/lista-item')
+            history('/login')
+            alert("Item cadastrado com sucesso.")
         })
         .catch(err => {
             console.error(err)
@@ -61,8 +63,7 @@ export const CadastroItem = () => {
                     </div>
                     <div className="divInput">
                         <label className="label">Data</label>
-                        <input className="input" type="text" value={data} onChange={e => setData(e.target.value)}
-                        placeholder='dd/mm/aaaa hh:mm' onFocus={(value) => console.log(value)}/>
+                        <DataPicker placeholder="dd/mm/aaaa hh:mm" className="input" onChange={e => setData(e.toLocaleString().slice(0, 16))}></DataPicker>
                     </div>
                     <div className="divInput">
                         <button className="button" type="button" onClick={handleEntrar}>
