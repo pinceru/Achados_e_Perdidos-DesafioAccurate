@@ -1,4 +1,4 @@
-package accurate.desafio2022.controller.dto;
+package accurate.desafio2022.controller.form;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

@@ -2,7 +2,7 @@ package accurate.desafio2022.controller.dto;
 
 import org.springframework.data.domain.Page;
 
-import accurate.desafio2022.config.FormatarData;
+import accurate.desafio2022.helper.FormatarData;
 import accurate.desafio2022.model.Historico;
 import lombok.Data;
 

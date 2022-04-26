@@ -1,4 +1,4 @@
-package accurate.desafio2022.config;
+package accurate.desafio2022.helper;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

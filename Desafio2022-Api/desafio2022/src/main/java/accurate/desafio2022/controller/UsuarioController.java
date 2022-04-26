@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import accurate.desafio2022.controller.dto.UsuarioForm;
 import accurate.desafio2022.controller.dto.UsuarioDTO;
+import accurate.desafio2022.controller.form.UsuarioForm;
 import accurate.desafio2022.model.Usuario;
 import accurate.desafio2022.repository.UsuarioRepository;
 

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { Header } from "../../shared/components"
-import { api, registrarToken } from "../../shared/services/api"
-import { getItem } from "../../shared/services/cookie"
-import { IItem } from "../homeItens/components/TabelaItem"
-import { Historico } from "./components/Historico"
+import { Header } from "../../components"
+import { api, registrarToken } from "../../services/api"
+import { getItem } from "../../services/cookie"
+import { IItem } from "../../components/TabelaItem"
+import { Historico } from "../../components/Historico"
 import '../../shared/style/style.css'
 import wave from '../../../src/imgs/Vector.png'
 import otherwave from '../../../src/imgs/Vector1.png'

@@ -1,8 +1,8 @@
 import { useState } from "react"
-import { api } from "../../shared/services/api"
+import { api } from "../../services/api"
 import { Link, useNavigate } from "react-router-dom"
-import { DataPicker, Maps } from "../../shared/components"
-import { Header } from "../../shared/components/Header"
+import { DataPicker, Maps } from "../../components"
+import { Header } from "../../components/Header"
 import '../../shared/style/style.css'
 import wave from '../../../src/imgs/Vector.png'
 import otherwave from '../../../src/imgs/Vector1.png'

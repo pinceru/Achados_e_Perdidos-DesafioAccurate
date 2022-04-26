@@ -3,7 +3,7 @@ import '../../shared/style/style.css'
 import wave from '../../../src/imgs/Vector.png'
 import otherwave from '../../../src/imgs/Vector1.png'
 import globo from '../../../src/imgs/Destination-rafiki.png'
-import { Header } from "../../shared/components"
+import { Header } from "../../components"
 
 export const Dashboard = () => {
     return (

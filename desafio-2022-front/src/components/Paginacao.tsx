@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { api, registrarToken } from "../../../shared/services/api"
-import { getItem } from "../../../shared/services/cookie"
-import { IItemReponse } from "../HomeItens"
+import { api, registrarToken } from "../services/api"
+import { getItem } from "../services/cookie"
+import { IItemReponse } from "../pages/homeItens/HomeItens"
 
 interface IPaginacao {
     totalItens: number

@@ -1,5 +1,5 @@
 
-import {IItem, ITabelaItemProps} from "../../homeItens/components/TabelaItem"
+import {IItem, ITabelaItemProps} from "./TabelaItem"
 
 export const Historico: React.FC<ITabelaItemProps> = (props) => {
     return(

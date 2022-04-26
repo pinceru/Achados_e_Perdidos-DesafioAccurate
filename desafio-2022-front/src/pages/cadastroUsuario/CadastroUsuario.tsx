@@ -1,11 +1,10 @@
 import { useState } from "react"
-import { api } from "../../shared/services/api"
+import { api } from "../../services/api"
 import { Link, useNavigate } from "react-router-dom"
-import { Mascaratelefone } from "../../shared/services/mascaras/mascaraTelefone"
 import '../../shared/style/style.css'
 import wave from '../../../src/imgs/Vector.png'
 import otherwave from '../../../src/imgs/Vector1.png'
-import { Header } from "../../shared/components"
+import { Header } from "../../components"
 
 export const CadastroUsuario = () => {
     const [nome, setNome] = useState('')
@@ -13,24 +12,6 @@ export const CadastroUsuario = () => {
     const [login, setLogin] = useState('')
     const [senha, setSenha] = useState('')
     const history = useNavigate()
-
-    //const telefoneTotal = (telefone: string) => {
-    //    let telefoneFinal = telefone
-    //    if (telefoneFinal.length == 2) {
-    //        telefoneFinal.replace(")", telefoneFinal)
-    //    }
-    //    if (telefoneFinal.length == 3) {
-    //        telefoneFinal += ")"
-    //    }
-    //    return telefoneFinal
-    //}
-
-    //const telefoneTotal = (telefone: string) => {
-    //    const parte1 = telefone.slice(1, 2)
-    //    const parte2 = telefone.slice(2, 7)
-    //    const parte3 = telefone.slice(7, 11)
-    //    return `(${parte1}) ${parte2}-${parte3}`
-    //}
 
     const handleEntrar = () => {
         api.post("/usuario/", {

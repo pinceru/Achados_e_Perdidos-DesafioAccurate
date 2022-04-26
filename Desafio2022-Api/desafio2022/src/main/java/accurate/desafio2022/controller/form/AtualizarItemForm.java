@@ -1,4 +1,4 @@
-package accurate.desafio2022.controller.dto;
+package accurate.desafio2022.controller.form;
 
 import java.math.BigDecimal;
 
@@ -6,12 +6,9 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import accurate.desafio2022.config.FormatarData;
+import accurate.desafio2022.helper.FormatarData;
 import accurate.desafio2022.model.Item;
 import accurate.desafio2022.model.Status;
-import accurate.desafio2022.repository.ItemRepository;
-import accurate.desafio2022.repository.StatusRepository;
-import accurate.desafio2022.service.ItemService;
 import lombok.Data;
 
 @Data
@@ -30,14 +27,11 @@ public class AtualizarItemForm {
 	@NotNull
 	private BigDecimal longitude;
 	
-	ItemService service = new ItemService();
-	public Item atualizarItem(Long id, ItemRepository itemRepository, StatusRepository statusRepository) {
-		Status statusObj = statusRepository.findByNome(status);
-		Item item = itemRepository.getOne(id);
+	public Item atualizarItem(Item item, Status status) {
 		item.getAutor().setNome(this.nome);
 		item.getAutor().setTelefone(this.telefone);
 		item.setDescricao(this.descricao);
-		item.setStatus(statusObj);
+		item.setStatus(status);
 		item.setData(FormatarData.formatarData(this.data));
 		item.getLocalizacao().setLatitude(this.latitude);
 		item.getLocalizacao().setLongitude(this.longitude);

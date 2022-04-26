@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import accurate.desafio2022.config.security.TokenService;
-import accurate.desafio2022.controller.dto.LoginForm;
 import accurate.desafio2022.controller.dto.TokenDTO;
+import accurate.desafio2022.controller.form.LoginForm;
 
 @RestController
 @RequestMapping("/auth")
