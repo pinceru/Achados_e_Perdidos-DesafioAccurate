@@ -17,7 +17,7 @@ export const HistoricoItem = () => {
     const token = getItem('token')
     registrarToken(token)
     useEffect(() => {
-        api.get(`/item/historico/listar/${id}`)
+        api.get(`/item/historico/${id}`)
         .then((response) => {
             setItem(response.data.content)
         })

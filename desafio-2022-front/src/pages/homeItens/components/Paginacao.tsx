@@ -2,7 +2,6 @@ import { useState } from "react"
 import { api, registrarToken } from "../../../shared/services/api"
 import { getItem } from "../../../shared/services/cookie"
 import { IItemReponse } from "../HomeItens"
-import { IItem } from "./TabelaItem"
 
 interface IPaginacao {
     totalItens: number
@@ -25,7 +24,7 @@ export const Paginacao = ({totalItens, itensPagina = 10, setItem}: IPaginacao) =
         setPaginaAtual(page)
         const token = getItem('token')
         registrarToken(token)
-        api.get('/item/listar', {params:{page, size}})
+        api.get('/item/', {params:{page, size}})
         .then((response) => {
             setItem(response.data)
         })

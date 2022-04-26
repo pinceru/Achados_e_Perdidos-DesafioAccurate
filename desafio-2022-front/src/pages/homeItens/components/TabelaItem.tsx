@@ -16,10 +16,10 @@ export interface IItem {
 export const TabelaItem: React.FC<ITabelaItemProps> = (props) => {
     const history = useNavigate()
     const pushIdAtualizar = (id: number) => {
-        history(`/atualizar-item/${id}`)
+        history(`/atualizar/${id}`)
     }
     const pushIdHistorico = (id: number) => {
-        history(`/historico-item/${id}`)
+        history(`/historico/${id}`)
     }
 
     return(

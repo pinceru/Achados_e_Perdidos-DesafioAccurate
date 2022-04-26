@@ -33,7 +33,7 @@ export const CadastroUsuario = () => {
     //}
 
     const handleEntrar = () => {
-        api.post("/usuario/cadastrar", {
+        api.post("/usuario/", {
             nome:nome,
             login:login,
             senha:senha,
@@ -85,7 +85,7 @@ export const CadastroUsuario = () => {
                 </div>
             </form>
             <div className="containerLink">
-                <Link className="a2" to="/pagina-inicial">    
+                <Link className="a2" to="/">    
                     Voltar
                 </Link>
             </div> 

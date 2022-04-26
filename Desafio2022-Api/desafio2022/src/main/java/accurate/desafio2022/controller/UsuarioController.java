@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import accurate.desafio2022.controller.dto.InserirUsuarioDTO;
+import accurate.desafio2022.controller.dto.UsuarioForm;
 import accurate.desafio2022.controller.dto.UsuarioDTO;
 import accurate.desafio2022.model.Usuario;
 import accurate.desafio2022.repository.UsuarioRepository;
@@ -25,9 +25,9 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@PostMapping("/cadastrar")
+	@PostMapping("/")
 	@Transactional
-	public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody @Valid InserirUsuarioDTO insercaoDTO, 
+	public ResponseEntity<UsuarioDTO> cadastrarUsuario(@RequestBody @Valid UsuarioForm insercaoDTO, 
 			UriComponentsBuilder uriBuilder) {
 		Usuario usuario = insercaoDTO.conveter();
 		usuarioRepository.save(usuario);

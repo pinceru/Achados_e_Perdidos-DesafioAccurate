@@ -28,7 +28,7 @@ export const AtualizacaoItem = () => {
         console.log(id)
         const token = getItem('token')
         registrarToken(token)
-        api.get(`/item/buscar/${id}`)
+        api.get(`/item/${id}`)
         .then((response) => {
             setItem(response.data)
         })
@@ -43,7 +43,7 @@ export const AtualizacaoItem = () => {
     const handleAtualizar = () => {
         const token = getItem('token')
         registrarToken(token)
-        api.put(`/item/atualizar/${id}`, {
+        api.put(`/item/${id}`, {
             nome: item.nome,
             telefone: item.telefone,
             descricao: item.descricao,

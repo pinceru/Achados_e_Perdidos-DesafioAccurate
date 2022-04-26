@@ -6,7 +6,7 @@ import accurate.desafio2022.model.Usuario;
 import lombok.Data;
 
 @Data
-public class InserirUsuarioDTO {
+public class UsuarioForm {
 
 	private String nome;
 	private String senha;

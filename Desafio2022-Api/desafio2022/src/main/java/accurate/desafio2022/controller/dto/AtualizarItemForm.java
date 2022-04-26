@@ -11,10 +11,11 @@ import accurate.desafio2022.model.Item;
 import accurate.desafio2022.model.Status;
 import accurate.desafio2022.repository.ItemRepository;
 import accurate.desafio2022.repository.StatusRepository;
+import accurate.desafio2022.service.ItemService;
 import lombok.Data;
 
 @Data
-public class AtualizarItemDTO {
+public class AtualizarItemForm {
 	@NotNull @NotEmpty @Size(max = 50, min = 1)
 	private String nome;
 	@Size(max = 15, min = 14)
@@ -29,6 +30,7 @@ public class AtualizarItemDTO {
 	@NotNull
 	private BigDecimal longitude;
 	
+	ItemService service = new ItemService();
 	public Item atualizarItem(Long id, ItemRepository itemRepository, StatusRepository statusRepository) {
 		Status statusObj = statusRepository.findByNome(status);
 		Item item = itemRepository.getOne(id);

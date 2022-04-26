@@ -18,7 +18,7 @@ export const CadastroItem = () => {
 
     const handleEntrar = () => {
         console.log(data)
-        api.post("/item/cadastrar", {
+        api.post("/item/", {
             nome:nome,
             telefone:telefone,
             descricao:descricao,
@@ -71,7 +71,7 @@ export const CadastroItem = () => {
                         </button>
                     </div>
                     <div className="containerLink">
-                        <Link className="a2" to="/pagina-inicial">    
+                        <Link className="a2" to="/">    
                             Voltar
                         </Link>
                     </div> 

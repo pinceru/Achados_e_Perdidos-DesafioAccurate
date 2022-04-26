@@ -18,10 +18,12 @@ import accurate.desafio2022.model.Usuario;
 import accurate.desafio2022.repository.LocalizacaoRepository;
 import accurate.desafio2022.repository.StatusRepository;
 import accurate.desafio2022.repository.UsuarioRepository;
+import accurate.desafio2022.service.ItemService;
+import accurate.desafio2022.service.UsuarioService;
 import lombok.Data;
 
 @Data
-public class InserirItemDTO {
+public class ItemForm {
 	@NotNull @NotEmpty @Size(max = 50, min = 1)
 	private String nome;
 	@Size(max = 15, min = 14)
@@ -37,16 +39,15 @@ public class InserirItemDTO {
 	private BigDecimal longitude;
 	
 	public Item converter(UsuarioRepository usuarioRepository, StatusRepository statusRepository, 
-			LocalizacaoRepository localizacaoRepository) {
-		Status statusObj = statusRepository.findByNome(status);
+			LocalizacaoRepository localizacaoRepository, ItemService service) {
+
+		UsuarioService usuarioService = new UsuarioService();
+		Status statusObj = service.getStatus(statusRepository, status);
 		Localizacao localizacao = localizacaoRepository.save(new Localizacao(latitude, longitude));
-		Optional<Usuario> usuario = usuarioRepository.findByNomeAndTelefone(nome, telefone);
+		Usuario usuario = usuarioService.getUsuario(usuarioRepository, nome, telefone);
 		LocalDateTime dataFormatada = FormatarData.formatarData(data);
-		if(usuario.isPresent()) {
-			return new Item(descricao, usuario.get(), statusObj, dataFormatada, localizacao);
-		} else {
-			Usuario novoUsuario = usuarioRepository.save(new Usuario(nome, telefone));
-			return new Item(descricao, novoUsuario, statusObj, dataFormatada, localizacao);
-		}
+		return new Item(descricao, usuario, statusObj, dataFormatada, localizacao);
 	}
+
+	
 }

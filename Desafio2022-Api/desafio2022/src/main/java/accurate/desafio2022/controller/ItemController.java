@@ -22,10 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import accurate.desafio2022.controller.dto.AtualizarItemDTO;
+import accurate.desafio2022.controller.dto.AtualizarItemForm;
 import accurate.desafio2022.controller.dto.HistoricoDTO;
-import accurate.desafio2022.controller.dto.InserirItemDTO;
 import accurate.desafio2022.controller.dto.ItemDTO;
+import accurate.desafio2022.controller.dto.ItemForm;
 import accurate.desafio2022.model.Historico;
 import accurate.desafio2022.model.Item;
 import accurate.desafio2022.repository.HistoricoRepository;
@@ -33,6 +33,7 @@ import accurate.desafio2022.repository.ItemRepository;
 import accurate.desafio2022.repository.LocalizacaoRepository;
 import accurate.desafio2022.repository.StatusRepository;
 import accurate.desafio2022.repository.UsuarioRepository;
+import accurate.desafio2022.service.ItemService;
 
 @RestController
 @RequestMapping("/item")
@@ -53,12 +54,14 @@ public class ItemController {
 	@Autowired
 	private HistoricoRepository historicoRepository;
 	
-	@PostMapping("/cadastrar")
+	ItemService service = new ItemService();
+	
+	@PostMapping("/")
 	@Transactional
-	public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody @Valid InserirItemDTO insercaoDTO, 
+	public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody @Valid ItemForm itemForm, 
 														UriComponentsBuilder uriBuilder) {
 		
-		Item item = insercaoDTO.converter(usuarioRepository, statusRepository, localizacaoRepository);
+		Item item = itemForm.converter(usuarioRepository, statusRepository, localizacaoRepository, service);
 		Item itemSalvo = itemRepository.save(item);
 		historicoRepository.save(new Historico(itemSalvo, itemSalvo.getStatus().getNome(), 
 				itemSalvo.getDescricao(), itemSalvo.getData()));
@@ -68,7 +71,7 @@ public class ItemController {
 		return ResponseEntity.created(uri).body(new ItemDTO(item));
 	}
 	
-	@GetMapping("/listar")
+	@GetMapping("/")
 	@Transactional
 	public Page<ItemDTO> listarTodos(@PageableDefault(sort = "data", 
 										direction = Direction.ASC, page = 0, size = 10) 
@@ -78,7 +81,7 @@ public class ItemController {
 		return ItemDTO.converter(itens);
 	}
 	
-	@GetMapping("/buscar/{id}")
+	@GetMapping("/{id}")
 	@Transactional
 	public ResponseEntity<ItemDTO> buscarItem(@PathVariable Long id) {
 		Optional<Item> item = itemRepository.findById(id);
@@ -89,14 +92,14 @@ public class ItemController {
 		}
 	}
 	
-	@PutMapping("/atualizar/{id}")
+	@PutMapping("/{id}")
 	@Transactional
 	public ResponseEntity<ItemDTO> atualizarItem(@PathVariable @Valid Long id, 
-													@RequestBody AtualizarItemDTO atualizarDTO) {
+													@RequestBody AtualizarItemForm itemForm) {
 		
 		Optional<Item> item = itemRepository.findById(id);
 		if(item.isPresent()) {
-			Item itemAtualizado = atualizarDTO.atualizarItem(id, itemRepository, statusRepository);
+			Item itemAtualizado = itemForm.atualizarItem(id, itemRepository, statusRepository);
 			historicoRepository.save(new Historico(itemAtualizado, itemAtualizado.getStatus().getNome(), 
 					itemAtualizado.getDescricao(), itemAtualizado.getData()));
 			return ResponseEntity.ok(new ItemDTO(itemAtualizado));
@@ -105,7 +108,7 @@ public class ItemController {
 		}	
 	}
 	
-	@DeleteMapping("/deletar/{id}")
+	@DeleteMapping("/{id}")
 	@Transactional
 	public ResponseEntity<?> deletarItem(@PathVariable Long id) {
 		Optional<Item> item = itemRepository.findById(id);
@@ -119,7 +122,7 @@ public class ItemController {
 		}
 	}
 	
-	@GetMapping("/historico/listar/{id}")
+	@GetMapping("/historico/{id}")
 	@Transactional
 	public Page<HistoricoDTO> listarHistorico(@PathVariable Long id, @PageableDefault(sort = "data", 
 												direction = Direction.ASC, page = 0, size = 5) 

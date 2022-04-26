@@ -31,7 +31,7 @@ export const HomeItens = () => {
     const token = getItem('token')
     registrarToken(token)
     useEffect(() => {
-        api.get('/item/listar')
+        api.get('/item/')
         .then((response) => {
             setItem(response.data)
         })
