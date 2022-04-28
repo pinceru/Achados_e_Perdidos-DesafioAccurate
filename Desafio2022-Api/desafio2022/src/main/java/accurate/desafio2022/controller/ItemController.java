@@ -58,9 +58,14 @@ public class ItemController {
 	@Autowired
 	private HistoricoRepository historicoRepository;
 	
-	ItemService itemService = new ItemService();
-	UsuarioService usuarioService = new UsuarioService();
-	HistoricoService historicoService = new HistoricoService();
+	@Autowired
+	private ItemService itemService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private HistoricoService historicoService;
 	
 	@PostMapping("/")
 	public ResponseEntity<ItemDTO> cadastrarItem(@RequestBody @Valid ItemForm itemForm, UriComponentsBuilder uriBuilder) {

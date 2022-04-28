@@ -2,11 +2,13 @@ package accurate.desafio2022.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import accurate.desafio2022.model.Historico;
 import accurate.desafio2022.model.Item;
 import accurate.desafio2022.repository.HistoricoRepository;
 
+@Service
 public class HistoricoService {
 	public void salvarHistorico(Historico historico, HistoricoRepository historicoRepository) {
 		historicoRepository.save(historico);

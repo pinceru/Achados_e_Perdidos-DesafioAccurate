@@ -2,11 +2,14 @@ package accurate.desafio2022.service;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import accurate.desafio2022.model.Item;
 import accurate.desafio2022.model.Status;
 import accurate.desafio2022.repository.ItemRepository;
 import accurate.desafio2022.repository.StatusRepository;
 
+@Service
 public class ItemService {
 
 	public Status getStatus(StatusRepository statusRepository, String status) {
