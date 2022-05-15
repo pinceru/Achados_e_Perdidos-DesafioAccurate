@@ -24,9 +24,7 @@ public class UsuarioService {
 		Optional<Usuario> optional = usuarioRepository.findByNomeAndTelefone(nome, telefone);
 		if(optional.isPresent()) {
 			return optional.get();
-		} else {
-			return usuarioRepository.save(new Usuario(nome, telefone));
-		}
+		} 
+		return usuarioRepository.save(new Usuario(nome, telefone));
 	}
-
 }

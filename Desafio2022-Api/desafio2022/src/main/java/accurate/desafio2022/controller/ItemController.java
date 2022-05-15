@@ -40,7 +40,7 @@ public class ItemController {
 	
 	@Autowired
 	private ItemService itemService;
-	
+
 	@Autowired
 	private UsuarioService usuarioService;
 	
@@ -74,11 +74,10 @@ public class ItemController {
 	@Transactional
 	public ResponseEntity<ItemDTO> buscarItem(@PathVariable Long id) {
 		Optional<Item> item = itemService.getItem(id);
-		if(item.isPresent()) {
-			return ResponseEntity.ok(new ItemDTO(item.get()));
-		} else {
+		if(item.isPresent() != true) {
 			return ResponseEntity.notFound().build();
 		}
+		return ResponseEntity.ok(new ItemDTO(item.get()));
 	}
 	
 	@PutMapping("/{id}")
@@ -86,16 +85,15 @@ public class ItemController {
 	public ResponseEntity<ItemDTO> atualizarItem(@PathVariable @Valid Long id, @RequestBody AtualizarItemForm itemForm) {
 		
 		Optional<Item> item = itemService.getItem(id);
-		if(item.isPresent()) {
-			Status status = itemService.getStatus(itemForm.getStatus());
-			Item itemAtualizado = itemForm.atualizarItem(item.get(), status);
-			Item itemSalvo = itemService.salvarItem(itemAtualizado);
-			Historico historico = historicoService.gerarNovoHistorico(itemAtualizado);
-			historicoService.salvarHistorico(historico);
-			return ResponseEntity.ok(new ItemDTO(itemSalvo));
-		} else {
+		if(item.isPresent() != true) {
 			return ResponseEntity.notFound().build();
-		}	
+		} 
+		Status status = itemService.getStatus(itemForm.getStatus());
+		Item itemAtualizado = itemForm.atualizarItem(item.get(), status);
+		Item itemSalvo = itemService.salvarItem(itemAtualizado);
+		Historico historico = historicoService.gerarNovoHistorico(itemAtualizado);
+		historicoService.salvarHistorico(historico);
+		return ResponseEntity.ok(new ItemDTO(itemSalvo));	
 	}
 	
 	@GetMapping("/historico/{id}")
