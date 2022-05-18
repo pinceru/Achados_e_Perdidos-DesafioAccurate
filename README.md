@@ -1,39 +1,46 @@
-# Achados e Perdidos - Desafio do plano de estágio da Accurate Software
+# Desafio do plano de estágio da Accurate Software
+
+##
 
 ## O que é este projeto?
-
-### O sistema de achados e perdidos, é um sistema onde o usuário pode cadastrar um item que encontrou, cadastrando o local, horário e um telefone para contato. E também pode buscar por um item que perdeu, criando uma conta no sistema e verificando os objetos que outras pessoas acharam.
-### A príncipio, um usuário não precisa de uma conta para cadastrar um item perdido, apenas é necessário estar logado para buscar itens que perdeu.
+#### Site fictício onde as pessoas podem buscar itens perdidos ou anunciar objetos que encontraram.
 
 ## Por que o projeto foi feito?
+#### O projeto foi proposto como primeira fase do desafio de plano de estágio da empresa onde estagiei.
+#### O desafio pedia um sistema de achados e perdidos com algumas específicações:
+#### Back-end:
+##### - Feito com Spring Boot ou Node.js
+##### - Ter tratamento de erro e validação
+#### Front-end:
+##### - Feito com React.js
+##### - Consumir alguma API pública de localização
+##### - Ter um mapa clicavel
 
-### Accurate Software, empresa onde fiz meu estágio, tem duas fases de desafios para os estagiários. Sendo a primeira parte individual e a segunda em grupo.
-### Na primeira fase desse desafio, foi pedido um sistema de achados e perdidos, que tivesse um mapa onde o usuário poderia clicar para marcar o local desejado.
-### O objetivo do desafio é avaliar a eficacia do plano de estágio e observar como os estágiarios estruturam o código.
-### As regras diziam que o back-end deveria ser feito com Spring Boot ou Node.js, e o front com React.js.
-### O uso de frameworks estava liberado.
+## Como funciona?
+#### Na tela de inicio o usuário pode se cadastrar, cadastrar um item que encontrou ou fazer o login para acessar o sistema.
+#### Não é necessário possuir uma conta para cadastrar um item. Apenas para buscar algo que perdeu.
+#### Na hora de cadastrar o item, o usuário informa o local onde encontrou o encontrou, clicando no mapa. 
+#### Além de passar a descrição do objeto encontrado, também é necessário informar o horário que o encontrou e um telefone para contato.
+#### Para buscar um item perdido, o usuário se autentica no sistema e navega por uma lista de itens anunciados, em busca do seu.
+#### Ao encontrar, o usuário entra em contato com a pessoa que o achou, através do telefone fornecido.
 
-## O que foi utilizado para desenvolvê-lo?
+## Requisitos:
+##### - Java 1.8
+##### - Maven
+##### - Yarn
+##### - MySQL
+##### - Conexão à internet 
 
-### Seguindo as regras do desafio, utilizei o Java com Spring Boot para desenvolver o back-end.
-### Utilizei o Hibernate para desenvolver o Banco de Dados no MySQL.
-### A JWT foi utilizada para gerar o token. Segui os padrões de projeto do Spring Boot para autenticar e liberar requisições na API.
-### Utilizei o Maven e o Lombok, para ganhar tempo. A API foi feita no Java 1.8 e no Spring Boot 2.3.1.RELEASE.
-### Para o front, utilizei o Yarn como gerenciador e o Typescript com o React.js.
-### O Axios foi utilizado para o consumo de API.
-### Para a manipulação das rotas, utilizei o React-router-dom.
-### Utilizei o Figma para prototipar uma tela simples.
-### Para gravar a sessão dos usuários, utilizei cookies para guardar o token de segurança. Para isso, foi utilizado o Nookies.
-### Para o mapa, utilizei a API do Google, capturando as coordenadas do local clicado e enviando para a API, que espera esses dados.
+## Instruções:
+#### Fazer um clone do repositório.
+#### Criar o database na sua máquina, através da linguagem SQL. E rodar o script de população fornecido.
+#### Abrir o arquivo "application.properties", em "Desafio2022-API/desafio2022/java/main/resources", e lá colocar as informçãoes do seu Banco de Dados local.
+#### No terminal, rodar o comando "mvn install".
+#### Navegar até o target e rodar o comando "java -jar desafio2022-0.0.1-SNAPSHOT.jar".
+#### Navegar até a pasta do front e rodar o comando "yarn start".
 
-## Concluão
 
-### O desafio me forçou a colocar em prática o que eu havia estudo, o que foi ótimo para praticar.
-### Devido a falta de tempo, a API foi realizada em cinco dias, o resto do tempo foi utilizado para tentar aprender React.js.
-### React.js foi visto em cima da hora e sem tempo para praticar, por isso não está nada bem estruturado.
-### Aprendi a trocar informações e ajuda com os outros estagários, discutindo estratégias.
-
-## Agradecimento ao estagiário Alex Xavier pelas idéias e soluções não pensadas.
+##### Agradecimento aos meus colegas de estágio pela ajuda com o React.js. 
 
 <div style="display: inline_block"><br>
    <img align="center" alt="Spring" height="65" width="65" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" />
