@@ -34,7 +34,7 @@
 ## Instruções:
 #### Fazer um clone do repositório.
 #### Criar o database na sua máquina, através da linguagem SQL. E rodar o script de população fornecido.
-#### Abrir o arquivo "application.properties", em "Desafio2022-API/desafio2022/java/main/resources", e lá colocar as informçãoes do seu Banco de Dados local.
+#### Abrir o arquivo `application.properties`, em `Desafio2022-API/desafio2022/java/main/resources`, e lá colocar as informçãoes do seu Banco de Dados local.
 #### No terminal, rodar o comando `mvn install`.
 #### Navegar até o target e rodar o comando `java -jar desafio2022-0.0.1-SNAPSHOT.jar`.
 #### Navegar até a pasta do front e rodar o comando `yarn start`.
