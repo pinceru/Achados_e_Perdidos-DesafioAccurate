@@ -9,12 +9,12 @@
 #### O projeto foi proposto como primeira fase do desafio de plano de estágio da empresa onde estagiei.
 #### O desafio pedia um sistema de achados e perdidos com algumas específicações:
 #### Back-end:
-##### - Feito com Spring Boot ou Node.js
-##### - Ter tratamento de erro e validação
+##### - ```Feito com Spring Boot ou Node.js```
+##### - `Ter tratamento de erro e validação`
 #### Front-end:
-##### - Feito com React.js
-##### - Consumir alguma API pública de localização
-##### - Ter um mapa clicavel
+##### - `Feito com React.js`
+##### - `Consumir alguma API pública de localização`
+##### - `Ter um mapa clicavel`
 
 ## Como funciona?
 #### Na tela de inicio o usuário pode se cadastrar, cadastrar um item que encontrou ou fazer o login para acessar o sistema.
@@ -34,7 +34,7 @@
 ## Instruções:
 #### Fazer um clone do repositório.
 #### Criar o database na sua máquina, através da linguagem SQL. E rodar o script de população fornecido.
-#### Abrir o arquivo ```application.properties```, em ```Desafio2022-API/desafio2022/java/main/resources```, e lá colocar as informçãoes do seu Banco de Dados local.
+#### Abrir o arquivo "application.properties", em "Desafio2022-API/desafio2022/java/main/resources", e lá colocar as informçãoes do seu Banco de Dados local.
 #### No terminal, rodar o comando `mvn install`.
 #### Navegar até o target e rodar o comando `java -jar desafio2022-0.0.1-SNAPSHOT.jar`.
 #### Navegar até a pasta do front e rodar o comando `yarn start`.
